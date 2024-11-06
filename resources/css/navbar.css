@@ -1,0 +1,122 @@
+nav:first-of-type {
+    background-color: var(--nav);
+}
+nav:first-of-type .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    align-items: center;
+}
+nav:first-of-type .container .bars {
+    display: none;
+    font-size: 27px;
+    color: #556080;
+    cursor: pointer;
+}
+nav:first-of-type .container .logo a {
+    user-select: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+nav:first-of-type .container .logo a img {
+    width: 50px;
+}
+nav:first-of-type .container .logo a .brand-name {
+    font-family: "Righteous";
+    font-size: 30px;
+    font-weight: 400;
+    margin-left: 10px;
+    color: var(--brand-name);
+}
+nav:first-of-type .container .logo a:active {
+    color: inherit;
+}
+nav:first-of-type .container ul.list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+}
+nav:first-of-type .container ul.list li a {
+    padding: 7px;
+    color: var(--nav-text);
+    margin: 0 7px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+nav:first-of-type .container ul.list li a i {
+    margin-right: 7px;
+}
+nav:first-of-type .container ul.list li a:hover {
+    opacity: 0.5;
+}
+nav:first-of-type .container ul.list li.login a {
+    color: var(--outline-text);
+    border: 1.5px solid var(--buttons);
+}
+nav:first-of-type .container ul.list li.login a:hover {
+    background-color: var(--bg);
+    opacity: 0.5;
+    border-color: var(--bg);
+}
+nav:first-of-type .container ul.list li.logout a {
+    border-radius: 3px;
+    background-color: var(--danger);
+    color: #fff;
+    padding: 10px;
+}
+nav:first-of-type .container ul.list li.logout a:hover {
+    background-color: var(--nav);
+    color: var(--nav-text);
+    opacity: 0.5;
+}
+@media only screen and (max-width: 460px) {
+    nav:first-of-type .container .bars {
+        display: block;
+    }
+    nav:first-of-type .container ul.list {
+        display: none;
+        top: 90px;
+        position: absolute;
+        background-color: var(--nav);
+        width: 90%;
+        padding: 10px 0;
+        border-radius: 3px;
+        box-shadow: 0 3px 10px -3px #0000003d;
+    }
+    nav:first-of-type .container ul.list li {
+        display: block;
+    }
+    nav:first-of-type .container ul.list li .i {
+        display: none;
+    }
+    nav:first-of-type .container ul.list li a {
+        display: block;
+        padding: 15px;
+        width: 100%;
+        transition: padding 0.2s;
+    }
+    nav:first-of-type .container ul.list li a:hover {
+        padding-left: 25px;
+    }
+    nav:first-of-type .container ul.list li.logout a {
+        color: #ac3424 !important;
+        background-color: transparent;
+    }
+    nav:first-of-type .container ul.list li a {
+        border: none !important;
+        margin-left: 0 !important;
+        width: 100%;
+    }
+    nav:first-of-type .container ul.list.active {
+        display: block;
+    }
+}
+
+body.dark nav:first-of-type .container .logo a svg g#_ path._ {
+    fill: #9ea9d3 !important;
+}
