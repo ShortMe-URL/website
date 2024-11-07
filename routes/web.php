@@ -7,10 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('loginpage');
-})->name('loginpage');
-
 Route::post('/shortURL', function () {
     return view('welcome');
 })->name('shorturl');

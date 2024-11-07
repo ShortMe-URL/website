@@ -48,6 +48,12 @@ nav:first-of-type .container ul.list li a {
     font-size: 18px;
     transition: all 0.2s;
 }
+
+
+nav:first-of-type .container ul.list li.active a  {
+    color: var(--brand-name);
+}
+
 nav:first-of-type .container ul.list li a i {
     margin-right: 7px;
 }
@@ -94,12 +100,14 @@ nav:first-of-type .container ul.list li.logout a:hover {
     nav:first-of-type .container ul.list li .i {
         display: none;
     }
+
     nav:first-of-type .container ul.list li a {
         display: block;
         padding: 15px;
         width: 100%;
         transition: padding 0.2s;
     }
+
     nav:first-of-type .container ul.list li a:hover {
         padding-left: 25px;
     }

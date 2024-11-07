@@ -1,5 +1,7 @@
 @extends('layouts.html')
 
+@section('title', "Login")
+
 @section('body')
     <section class="container">
 
@@ -21,5 +23,5 @@
 @endsection
 
 @section('head')
-    @vite('resources/css/pages/login.css')
+    @vite('resources/css/pages/login-register.css')
 @endsection
