@@ -1,15 +1,16 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShortUrlController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/shortURL', function () {
-    return view('welcome');
-})->name('shorturl');
+Route::post('/shortURL', [ShortUrlController::class, 'store'])->name('shorturl.short');
+Route::get('/o/{shortpath}', [ShortUrlController::class, 'click'])->name('shorturl.click');
+
 
 
 // Route::get('/dashboard', function () {

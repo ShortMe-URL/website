@@ -40,8 +40,22 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            // 'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected static function boot()
+    {
+        parent::boot(); 
+        
+        static::deleting(function ($user) {
+            $user->links()->delete();
+        });
+    }
+
+    public function links()
+    {
+        return $this->hasMany(Link::class);
     }
 }

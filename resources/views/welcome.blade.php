@@ -9,7 +9,7 @@
                     Build your brand's recognition and get detailed insights on how your
                     links are performing!
                 </p>
-                <a href="{{ route("login") }}">Get Started</a>
+                <a href="{{ route('login') }}">Get Started</a>
             </div>
             <div class="col2">
                 <img src="{{ Vite::asset('resources/images/landing.svg') }}">
@@ -19,14 +19,31 @@
     <section class="shorter">
         <div class="machine" style="--image-illu: url({{ Vite::asset('resources/images/illu.svg') }});">
             <div class="container">
-                <form action="{{ route("shorturl") }}" method="POST">
-                    <input type="url" name="url" id="url" placeholder="Insert your awesome url" class="url" required>
+                <form action="{{ route('shorturl.short') }}" method="POST">
+                    @csrf
+                    <input type="url" name="url" id="url" placeholder="Insert your awesome url" class="url"
+                        required>
                     <input type="submit" value="Short it!" id="submit">
                 </form>
 
+                @if ($errors->any())
+                    <div class="error_message error">{{ $errors->first() }}</div>
+                @endif
             </div>
         </div>
         <div class="container">
+            @if (session('shorturl_created'))
+                <div class="shorted">
+                    <div class="url">
+                        <div class="long">{{ session('shorturl_data')->tourl }}</div>
+                        <div class="short">{{ session('shorturl_data')->getFullURL() }}</div>
+                    </div>
+                    <button
+                        onclick="(navigator.clipboard.writeText(this.parentElement.querySelector('.url .short')?.innerText),document.execCommand('copy'),this.classList.add('copied'),this.innerText = 'Copied', window.setTimeout(() => (this.innerText = 'Copy', this.classList.remove('copied')), 2000))">
+                        Copy
+                    </button>
+                </div>
+            @endif
 
             <div class="features">
                 <h6>Control and Manage Everything</h6>
