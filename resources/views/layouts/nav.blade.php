@@ -10,7 +10,7 @@
         <ul class="list">
             @if (Request::is('dashboard*'))
             <x-navitem href="{{ route('dashboard') }}"><i class="fad fas fa-chart-line"></i> Dashboard</x-navitem>
-            <x-navitem href="#"><i class="fad fas fa-link"></i> My Urls</x-navitem>
+            <x-navitem href="{{ route('dashboard.myurls') }}"><i class="fad fas fa-link"></i> My Urls</x-navitem>
             @else
                 @auth
                     <li class="login">

@@ -14,21 +14,6 @@ form {
     gap: 20px;
 }
 
-form input {
-    width: 100%;
-}
-
-form .input-group {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-form .alert-danger {
-    margin: 0;
-}
-
 @media only screen and (max-width: 320px) {
     form {
         min-width: 95vw;

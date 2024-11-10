@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -60,7 +61,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->prefix('/dashboard')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard.analytics');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/myurls', [DashboardController::class, 'myurls'])->name('dashboard.myurls');
+    Route::get('/mylinksdata', [DashboardController::class, 'mylinksdata'])->name('dashboard.mylinksdata');
 });

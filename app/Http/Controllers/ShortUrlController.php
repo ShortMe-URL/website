@@ -6,15 +6,17 @@ use App\Models\Link;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class ShortUrlController extends Controller
 {
-    public function click(Request $request, $shortpath)
+    public function click($shortpath)
     {
         $link = Link::where('shortpath', $shortpath)->first();
-        
+
         if (!$link) {
             abort(404);
         }
@@ -23,13 +25,14 @@ class ShortUrlController extends Controller
             view('Enter Password');
             return;
         }
-        
+
         $link->newClick();
         return redirect()->to($link->tourl);
     }
 
-    public function store(Request $request, User $user)
+    public function store(Request $request)
     {
+        $user = Auth::user();
         $request->validate([
             'shortpath' => 'string|max:255|unique:links',
             'url'       => 'required|url',
@@ -50,9 +53,8 @@ class ShortUrlController extends Controller
         } else {
             $delete_at =  Carbon::now()->addDays(1);
         }
-
         $created_link = Link::create([
-            'user_id'   => $user->id,
+            'user_id'   => $user ? $user->id : null,
             'tourl'     => $request->input('url'),
             'password ' => $hashedPassword,
             'premium'   => $request->input('premium') ? true : false,

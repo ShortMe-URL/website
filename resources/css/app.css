@@ -4,7 +4,7 @@
     --bg: #f4f9f9;
     --nav: #fffefd;
     --brand-name: #7383bf;
-    --cards: #e6e9ec;
+    --cards: #e6e9ec88;
     --buttons: #839ec7;
     --outline-text: #839ec7;
     --nav-text: #292929;
@@ -13,6 +13,10 @@
     --section: #fff;
     /* none */
     --danger: #df4759;
+    /*  */
+    --green-rgb: 76, 231, 171;
+    --blue-rgb: 76, 166, 231;
+    --red-rgb: 231, 76, 120;
 }
 
 * {
@@ -39,7 +43,7 @@ body.dark {
     --bg: #222831;
     --nav: #2d4059;
     --brand-name: #9ea9d3;
-    --cards: #2e3540;
+    --cards: #353d4a88;
     --buttons: #56709b;
     --outline-text: #9ea9d3;
     --nav-text: #ffffffcc;
@@ -61,6 +65,34 @@ body.dark {
     color: var(--danger);
 }
 
+table {
+    color: var(--text);
+    background-color: var(--cards);
+    padding: 5px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--cards);
+}
+
+table tr th {
+    color: var(--nav-text);
+    border-radius: 5px;
+    padding: 10px 5px;
+    text-wrap: nowrap;
+}
+
+table tr th:last-child {
+    text-align: center;
+}
+
+table tr:first-child th {
+    color: var(--text);
+    font-size: larger;
+}
+
 button {
     padding: 10px;
     border-radius: 10px;
@@ -75,7 +107,7 @@ button:hover {
     transform: scale(103%);
 }
 
-form input {
+form input, form select {
     margin-bottom: 0.8rem;
 }
 
@@ -86,19 +118,32 @@ form h1 {
     letter-spacing: 1px;
 }
 
-input {
+form .input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form .alert-danger {
+    margin: 0;
+}
+
+input, select {
+    width: 100%;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid var(--brand-name);
     outline: none;
 }
 
-input.is-invalid {
+input.is-invalid, select.is-invalid {
     border: 2px solid var(--danger);
 }
 
 input:focus,
-button:focus {
+button:focus,
+select:focus {
     outline: 2px solid var(--brand-name);
 }
 
@@ -136,6 +181,7 @@ a {
     .container {
         width: 520px;
     }
+    
 }
 @media only screen and (max-width: 480px) {
     .container {

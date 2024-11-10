@@ -2,10 +2,16 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShortUrlController;
+use App\Models\Clicks;
+use App\Models\Link;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $linksCount = Link::count();
+    $clicksCount = Clicks::count();
+    $usersCount = User::count();
+    return view('welcome', compact('linksCount', 'clicksCount', 'usersCount'));
 });
 
 Route::post('/shortURL', [ShortUrlController::class, 'store'])->name('shorturl.short');

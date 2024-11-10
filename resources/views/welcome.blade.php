@@ -75,15 +75,15 @@
             <div class="stats">
                 <div class="col">
                     <h3>Powering</h3>
-                    <h2>11<span>Links</span></h2>
+                    <h2>{{ $linksCount }}<span>Links</span></h2>
                 </div>
                 <div class="col">
                     <h3>Serving</h3>
-                    <h2>111<span>Clicks</span></h2>
+                    <h2>{{ $clicksCount }}<span>Clicks</span></h2>
                 </div>
                 <div class="col">
                     <h3>Trusted By</h3>
-                    <h2>22<span>Customers</span></h2>
+                    <h2>{{ $usersCount }}<span>Customers</span></h2>
                 </div>
             </div>
         </div>

@@ -1,0 +1,71 @@
+.sic {
+    padding: 15px;
+    border-radius: 10px;
+    color: var(--text);
+    text-align: end;
+}
+
+.col-12:nth-child(1) .sic {
+    background-color: rgb(var(--blue-rgb), 50%);
+    border: 2px solid rgb(var(--blue-rgb), 70%);
+}
+
+.col-12:nth-child(2) .sic {
+    background-color: rgb(var(--green-rgb), 50%);
+    border: 2px solid rgb(var(--green-rgb), 70%);
+}
+
+.col-12:nth-child(3) .sic {
+    background-color: rgb(var(--red-rgb), 50%);
+    border: 2px solid rgb(var(--red-rgb), 70%);
+}
+
+.sic h2 {
+    margin: 0;
+    text-align: start;
+    color: var(--nav-text);
+    letter-spacing: 1px;
+}
+
+.sic span {
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+/*  */
+.card {
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.card .card-header {
+    background-color: var(--cards);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.card .card-header h3 {
+    margin: 0;
+    color: var(--text);
+}
+
+.card .card-header span {
+    margin: 0;
+    color: var(--nav-text);
+    font-size: 15px;
+}
+
+.card .card-content {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.card .card-content:has(canvas) {
+    padding: 5px;
+}
