@@ -96,6 +96,7 @@
                     @endforeach
                 </table>
             </div>
+            
         @else
             <h2 style="color: var(--nav-text);">You didn't short any link yet!</h2>
         @endif
