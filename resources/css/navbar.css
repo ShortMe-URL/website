@@ -37,6 +37,7 @@ nav:first-of-type .container ul.list {
     margin: 0;
     list-style: none;
     display: flex;
+    z-index: 1000;
 }
 nav:first-of-type .container ul.list li a {
     padding: 7px;

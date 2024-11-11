@@ -35,7 +35,7 @@
             @if (session('shorturl_created'))
                 <div class="shorted">
                     <div class="url">
-                        <div class="long">{{ session('shorturl_data')->tourl }}</div>
+                        {{-- <div class="long">{{ session('shorturl_data')->tourl }}</div> --}}
                         <div class="short">{{ session('shorturl_data')->getFullURL() }}</div>
                     </div>
                     <button

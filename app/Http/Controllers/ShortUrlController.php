@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\Session;
 
 class ShortUrlController extends Controller
 {
-    public function click($shortpath)
+    public function click(Request $request, $shortpath)
     {
-        $link = Link::where('shortpath', $shortpath)->first();
+        $link = Link::where('shortpath', $shortpath)->firstOrFail();
 
-        if (!$link) {
-            abort(404);
+        if ($request->isMethod('get') && $link->password) {
+            return view('password-url');
         }
 
-        if ($link->password !== null) {
-            view('Enter Password');
-            return;
+        if ($request->isMethod('post')) {
+            $request->validate(['password' => 'required']);
+
+            if (!Hash::check($request->input('password'), $link->password)) {
+                return back()->withErrors(['password' => 'Incorrect password.']);
+            }
         }
 
         $link->newClick();
@@ -36,12 +39,11 @@ class ShortUrlController extends Controller
         $request->validate([
             'shortpath' => 'string|max:255|unique:links',
             'url'       => 'required|url',
-            'password'  => 'nullable|string|min:8',
-            'premium'   => 'nullable|boolean',
+            'password'  => 'nullable|string|min:4',
             'delete_at' => 'nullable|string',
         ]);
 
-        $hashedPassword = $request->has('password') ? Hash::make($request->input('password')) : null;
+        $hashedPassword = $request->has('password') && $request->input('password') !== null ? Hash::make($request->input('password')) : null;
 
         $delete_at =  $request->input('delete_at');
         if ($delete_at === '1day') {
@@ -50,16 +52,26 @@ class ShortUrlController extends Controller
             $delete_at =  Carbon::now()->addDays(3);
         } else if ($delete_at === '7day') {
             $delete_at =  Carbon::now()->addDays(7);
+        } else if ($delete_at === '1month') {
+            $delete_at =  Carbon::now()->addMonths(1);
+        } else if ($delete_at === '1year') {
+            $delete_at =  Carbon::now()->addYears(1);
         } else {
             $delete_at =  Carbon::now()->addDays(1);
         }
-        $created_link = Link::create([
+
+        $data = [
             'user_id'   => $user ? $user->id : null,
             'tourl'     => $request->input('url'),
-            'password ' => $hashedPassword,
-            'premium'   => $request->input('premium') ? true : false,
+            'password'  => $hashedPassword,
             'delete_at' => $delete_at,
-        ]);
+        ];
+
+        if (auth()->user()->premium && $request->has('shortpath') && $request->input('shortpath') !== null) {
+            $data['shortpath'] = $request->input('shortpath');
+        }
+
+        $created_link = Link::create($data);
 
         Session::flash('shorturl_created', 'Link created successfully.');
         Session::flash('shorturl_data', $created_link);

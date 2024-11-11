@@ -35,6 +35,12 @@ fetch('/dashboard/mylinksdata').then(response => response.json()).then(data => {
             }]
         },
         options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 0
+                }
+            },
             interaction: {
                 intersect: false,
             },

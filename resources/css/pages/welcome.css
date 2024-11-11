@@ -289,6 +289,7 @@ section.shorter > .container p {
     border: 1px solid #eeebeb;
 }
 .machine .container input[type="submit"] {
+    width: fit-content;
     cursor: pointer;
     background-color: #7496bd;
     color: #fff;

@@ -16,6 +16,7 @@ Route::get('/', function () {
 
 Route::post('/shortURL', [ShortUrlController::class, 'store'])->name('shorturl.short');
 Route::get('/o/{shortpath}', [ShortUrlController::class, 'click'])->name('shorturl.click');
+Route::post('/o/{shortpath}', [ShortUrlController::class, 'click']);
 
 
 

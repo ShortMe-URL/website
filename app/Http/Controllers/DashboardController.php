@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -20,11 +21,26 @@ class DashboardController extends Controller
         return view('dashboard.analytics', compact('linksCount', 'clicksCount'));
     }
 
-    public function myurls()
+    public function myurls(Request $request)
     {
         $user = Auth::user();
 
-        $userLinks = $user->links()->get();
+
+        $sortOption = $request->input('sort', 'newtoold');
+
+        switch ($sortOption) {
+            case 'oldtonew':
+                $userLinks = $user->links()->orderBy('created_at', 'asc')->get();
+                break;
+            case 'newtoold':
+            default:
+                $userLinks = $user->links()->orderBy('created_at', 'desc')->get();
+                break;
+            case 'mostclicks':
+                $userLinks = $user->links()->withCount('clicks')->orderBy('clicks_count', 'desc')->get();
+                break;
+        }
+
         return view('dashboard.myurls', compact('userLinks'));
     }
 
@@ -57,5 +73,17 @@ class DashboardController extends Controller
                 'links_count' => $linksData[$month]->links_count ?? 0,
             ];
         });
+    }
+
+    public function deleteURL(Request $request, $linkid)
+    {
+        $link = Auth::user()->links()->find($linkid);
+
+        if (!$link) {
+            return response()->json(['message' => 'Link not found or unauthorized.'], 404);
+        }
+
+        $link->delete();
+        return response()->json(['message' => 'Link deleted successfully.'], 200);
     }
 }

@@ -63,5 +63,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->prefix('/dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/myurls', [DashboardController::class, 'myurls'])->name('dashboard.myurls');
+    Route::delete('/myurls/{linkid}', [DashboardController::class, 'deleteURL'])->name('dashboard.myurls.delete');
     Route::get('/mylinksdata', [DashboardController::class, 'mylinksdata'])->name('dashboard.mylinksdata');
 });

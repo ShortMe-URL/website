@@ -9,8 +9,14 @@
         <div class="bars" id="nav_btn"><i class="far fa-bars"></i></div>
         <ul class="list">
             @if (Request::is('dashboard*'))
-            <x-navitem href="{{ route('dashboard') }}"><i class="fad fas fa-chart-line"></i> Dashboard</x-navitem>
-            <x-navitem href="{{ route('dashboard.myurls') }}"><i class="fad fas fa-link"></i> My Urls</x-navitem>
+                <x-navitem href="{{ route('dashboard') }}"><i class="fad fas fa-chart-line"></i> Dashboard</x-navitem>
+                <x-navitem href="{{ route('dashboard.myurls') }}"><i class="fad fas fa-link"></i> My Urls</x-navitem>
+                <li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <a href="javascript:{}" onclick="this.parentNode.submit();"><i class="fad fa-left-from-bracket"></i> Logout</a>
+                    </form>
+                </li>
             @else
                 @auth
                     <li class="login">

@@ -10,7 +10,14 @@
 #optionsForm select {
     margin: 0;
 }
+
+#shorter {
+    margin-top: 2cm;
+}
+
 .machine h1 {
+    margin: 0;
+    margin-bottom: 15px;
     color: var(--text);
 }
 
@@ -36,13 +43,46 @@
 .machine form {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
+.machine form .url-sub {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.machine form #advopt {
+    color: var(--text);
+    cursor: pointer;
+    margin: 10px 0;
+}
+.machine form #advopt i {
+    transition: transform 300ms;
+}
+.machine form #advopt:hover i {
+    transform: rotateZ(180deg);
+}
+.machine form .advopt-inputs {
+    display: none;
+}
+.machine form #advopt.active ~ .advopt-inputs {
+    display: flex;
+}
+.machine form .advopt-inputs input,
+.machine form .advopt-inputs select {
+    margin: 0;
+}
+
 .machine .error {
+    width: 100%;
     font-weight: 500;
-    font-size: 14px;
-    color: #e04f4f;
-    padding: 10px 0 0 40px;
+    font-size: medium;
+    color: white;
+    padding: 10px;
+    background-color: #e54f4f8c;
+    border: 2px solid #e54f4f8c;
+    border-radius: 10px;
 }
 .machine input.url {
     padding: 13px;
@@ -57,6 +97,7 @@
     border: 1px solid #eeebeb;
 }
 .machine input[type="submit"] {
+    width: fit-content;
     cursor: pointer;
     background-color: #7496bd;
     color: #fff;
@@ -84,7 +125,7 @@
     z-index: 2;
     border-radius: 3px;
     padding: 10px;
-    background-color: var(--section);
+    background-color: var(--cards);
     display: flex;
     align-items: center;
 }
@@ -95,7 +136,7 @@
     height: 40px;
     top: -40px;
     z-index: 1;
-    background-color: var(--section);
+    background-color: var(--cards);
 }
 .container .shorted .url {
     width: 85%;

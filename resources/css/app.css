@@ -246,3 +246,11 @@ body.dark footer {
 body footer a {
     color: inherit;
 }
+
+.input-content-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    color: var(--text);
+}
