@@ -18,5 +18,4 @@ This project took approximately **14 hours** to build. I aimed to makde the desi
 
 In the future, I plan to add an **API Service** and continue improving **ShortMe** to make it even better!
 
-Website URL (For Testing): [shme.moha.com.tr](https://shme.moha.com.tr/) 
 *Thanks for reading! <3*
